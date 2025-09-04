@@ -3,7 +3,6 @@ body, input, select, button, textarea {
     font-family: 'Noto Sans JP', Arial, sans-serif;
     font-size: 1.1rem;
     color: #222831;
-    box-sizing: border-box;
 }
 
 body {
@@ -21,7 +20,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     font-size: 1.7rem;
-    margin-bottom: 15px;
 }
 
 /* 共通ボックススタイル */
@@ -39,23 +37,19 @@ h1 {
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     font-weight: 600;
 }
 
 .button-container button {
     width: 80px;
-    height: 38px;
+    height: 40px;
+    padding: 5px 10px;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 10px;
-    transition: transform 0.1s ease;
     box-shadow: inset 4px 4px 10px #bcbcbc,
                 inset -4px -4px 10px #ffffff;
-}
-
-.button-container button:hover {
-    transform: scale(1.03);
 }
 
 /* フォーム行 */
@@ -85,14 +79,15 @@ h1 {
     width: calc(80% - 130px);
     padding: 8px;
     text-align: right;
+    box-sizing: border-box;
+    margin-left: auto;
     font-weight: 400;
     height: 38px;
 }
 
 select {
     font-weight: 500;
-    text-align-last: right;       /* select右寄せ */
-    -moz-text-align-last: right;  /* Firefox対応 */
+    text-align-last: right; /* 選択肢右寄せ */
 }
 
 /* number input のスピンボタン非表示 */
@@ -119,7 +114,7 @@ input[type=number] {
     min-height: 50px;
 }
 
-/* スマホ(レスポンシブ対応) */
+/*スマホ(レスポンシブ対応)*/
 @media (max-width: 600px) {
     .calculator, .result {
         width: 95%;
@@ -127,42 +122,36 @@ input[type=number] {
     }
 
     .form-row {
-        flex-direction: row; /* 横並び維持 */
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
     .form-row label {
-        width: 40%;
+        width: 45%;
+        margin-bottom: 0;
         font-size: 0.95rem;
         text-align: left;
-        margin: 0;
     }
 
     .JaccsInput input,
     .JaccsInput select,
     .result input {
-        width: 55%;
-        font-size: 0.95rem;
-        text-align: right;
-        height: 36px;
-        padding: 6px;
-        margin: 0;
-    }
-
-    .button-container {
-        gap: 10px;
-    }
-
-    .button-container button {
-        width: 70px;
-        height: 34px;
-        font-size: 0.9rem;
+        width: 50%;
+        margin-left: 0;
+        font-size: 1rem;
+        text-align: right; /* 入力文字右寄せ */
     }
 
     h1 {
         font-size: 1.4rem;
-        margin-bottom: 12px;
         text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .button-container button {
+        width: 45%;
+        height: 38px;   
+        font-size: 1rem; 
     }
 }
