@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JACCS ローンシミュレーション</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="jaccs.css">
+</head>
+<body>
+    <h1>Jaccsローンシミュレーション</h1>
+    
+    <div class="JaccsInput">
+        <div class="calculator">
+            <div class="form-row">
+                <label for="price">本体価格</label>
+                <input type="text" id="price" class="pricedisplay">
+            </div>
+
+            <div class="form-row">
+                <label for="deposit">頭金</label>
+                <input type="text" id="deposit" class="deposit">
+            </div>
+
+            <div class="form-row">
+                <label for="splitAmount">分割対象金額</label>
+                <input type="text" id="splitAmount" class="splitAmount" readonly>
+            </div>
+
+            <div class="form-row">
+                <label for="bonusAmount">ボーナス金額</label>
+                <input type="text" id="bonusAmount" class="bonusAmount">
+            </div>
+
+            <div class="form-row">
+                <label for="installment">分割回数</label>
+                <select id="installment" class="installmentPayment">
+                    <option value="24">24回</option>
+                    <option value="36">36回</option>
+                    <option value="48">48回</option>
+                    <option value="60">60回</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="tax">金利</label>
+                <select id="taxOperation" class="installmentPayment">
+                    <option value="0">無金利</option>
+                    <option value="0.14">PP特別金利</option>
+                    <option value="0.3">金利有り</option>
+                </select>
+            </div>
+
+            <div class="button-container">
+                <button type="button" id="calculate">計算</button>
+                <button type="button" id="clear">クリア</button>
+            </div>
+        </div>
+
+        <div class="result">
+            <div class="form-row">
+                <label for="firstPayment">初回額</label>
+                <input type="text" id="firstPayment" class="firstPayment" readonly>
+            </div>
+
+            <div class="form-row">
+                <label for="otherPayment">2回目以降</label>
+                <input type="text" id="otherPayment" class="otherPayment" readonly>
+            </div>
+
+            <div class="form-row">
+                <label for="bonusPayment">
+                    ボーナス月<br>
+                    お支払金額
+                </label>
+                <input type="text" id="bonusPayment" class="bonusPayment" readonly>
+            </div>
+
+            <div id="bonusWarning" style="color: red; font-size: 0.9rem; margin-top: 2px;"></div>
+        </div>
+    </div>
+
+    <script src="jaccs.js"></script>
+</body>
+</html>
