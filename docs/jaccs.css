@@ -10,9 +10,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0;
     min-height: 100vh;
+    padding-top: 20px;
 }
 
 h1 {
@@ -21,15 +22,16 @@ h1 {
     margin-bottom: 15px;
 }
 
-/* コンテナ */
+/* ボックスデザイン */
 .calculator, .result {
     max-width: 360px;
+    width: 100%;
     margin: 0 auto 10px auto;
     background-color: #222831;
     color: #f0f0f0;
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 1.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 /* フォーム行 */
@@ -37,7 +39,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .form-row label {
@@ -45,6 +47,7 @@ h1 {
     font-weight: bold;
 }
 
+/* 入力・選択欄 */
 .JaccsInput input,
 .JaccsInput select,
 .result input {
@@ -58,9 +61,10 @@ h1 {
     text-align: right;
     box-sizing: border-box;
     font-weight: 400;
-    height: 38px;
+    height: 40px;
 }
 
+/* select調整 */
 select {
     font-weight: 500;
 }
@@ -81,61 +85,45 @@ input[type=number] {
     display: flex;
     justify-content: center;
     gap: 12px;
-    font-weight: 600;
+    margin-top: 10px;
 }
 
 .button-container button {
-    width: 90px;
+    width: 85px;
     height: 36px;
-    padding: 5px 10px;
     font-size: 0.95rem;
-    cursor: pointer;
+    font-weight: 600;
     border-radius: 8px;
-    transition: all 0.2s ease;
+    cursor: pointer;
     box-shadow: inset 2px 2px 6px #bcbcbc,
                 inset -2px -2px 6px #ffffff;
+    transition: all 0.2s ease;
 }
 
 .button-container button:hover {
-    transform: scale(1.03);
-    box-shadow: inset 1px 1px 5px,
-                inset -1px -1px 5px #ffffff,
+    transform: scale(1.02);
+    box-shadow: inset 1px 1px 4px,
+                inset -1px -1px 4px #ffffff,
                 1px 1px 6px #bcbcbc,
-                -1px -1px 5px #ffffff;
+                -1px -1px 4px #ffffff;
 }
 
 /* 計算結果ハイライト */
 .result-highlight {
     background-color: #fff !important;
     color: #4a4e52 !important;
-    transition: background-color 0.3s ease-in-out;
 }
 
-/* 上段・下段の行間統一 */
-.JaccsInput .form-row,
-.result .form-row {
-    min-height: 50px;
-}
-
-/* スマホ（レスポンシブ対応） */
+/* スマホ対応 */
 @media (max-width: 600px) {
     .calculator, .result {
         width: 95%;
         padding: 20px;
     }
 
-    .form-row {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-    }
-
     .form-row label {
         width: 40%;
-        text-align: left;
         font-size: 0.9rem;
-        margin-bottom: 0;
     }
 
     .JaccsInput input,
@@ -143,6 +131,7 @@ input[type=number] {
     .result input {
         width: 55%;
         font-size: 0.95rem;
+        height: 36px;
         padding: 6px;
     }
 
@@ -158,19 +147,14 @@ input[type=number] {
                     inset -1px -1px 4px #ffffff;
     }
 
-    /* hoverは最小限に */
     .button-container button:hover {
         transform: none;
         box-shadow: inset 1px 1px 3px #bcbcbc,
                     inset -1px -1px 3px #ffffff;
     }
 
-    .button-container button:active {
-        background-color: #004494;
-    }
-
     h1 {
         font-size: 1.4rem;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 }
