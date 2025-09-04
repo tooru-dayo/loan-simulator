@@ -51,7 +51,6 @@ h1 {
 
 /* 入力欄・選択 */
 .JaccsInput input,
-.JaccsInput select,
 .result input {
     flex: 2;
     background-color: #5f5f5f;
@@ -64,9 +63,21 @@ h1 {
     height: 40px;
 }
 
-/* select調整 */
-select {
-    font-weight: 500;
+/* select 調整：右寄せ */
+.JaccsInput select {
+    flex: 2;
+    background-color: #5f5f5f;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 8px;
+    text-align-last: right; /* 選択文字を右寄せ */
+    -moz-text-align-last: right; /* Firefox用 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 40px;
 }
 
 /* number input のスピンボタン非表示 */
@@ -124,10 +135,18 @@ input[type=number] {
     }
 
     .JaccsInput input,
-    .JaccsInput select,
     .result input {
         width: 55%;
         font-size: 0.95rem;
+        height: 36px;
+        padding: 6px;
+    }
+
+    .JaccsInput select {
+        width: 55%;
+        font-size: 0.95rem;
+        text-align-last: right;
+        -moz-text-align-last: right;
         height: 36px;
         padding: 6px;
     }
