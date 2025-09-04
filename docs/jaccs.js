@@ -141,3 +141,4 @@ installmentSelect.addEventListener('change', updateSplitAmount);
 taxOperationSelect.addEventListener('change', updateSplitAmount);
 
 updateSplitAmount();
+
