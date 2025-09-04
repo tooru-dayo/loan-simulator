@@ -3,8 +3,6 @@ body, input, select, button, textarea {
     font-family: 'Noto Sans JP', Arial, sans-serif;
     font-size: 1.1rem;
     color: #222831;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -13,71 +11,88 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    margin: 0;
     min-height: 100vh;
-    padding-top: 20px;
 }
 
 h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 1.7rem;
-    text-align: center;
     margin-bottom: 15px;
 }
 
-/* ボックスデザイン */
+/* 共通ボックススタイル */
 .calculator, .result {
     max-width: 360px;
-    width: 100%;
-    margin-bottom: 15px;
+    margin: 0 auto 10px auto;
     background-color: #222831;
     color: #f0f0f0;
-    padding: 25px;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 1.2);
+}
+
+/* ボタン */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-weight: 600;
+}
+
+.button-container button {
+    width: 80px;
+    height: 38px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.1s ease;
+    box-shadow: inset 4px 4px 10px #bcbcbc,
+                inset -4px -4px 10px #ffffff;
+}
+
+.button-container button:hover {
+    transform: scale(1.03);
 }
 
 /* フォーム行 */
 .form-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .form-row label {
-    flex: 1;
+    width: 120px;
     font-weight: bold;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
 }
 
-/* 入力欄・選択 */
+/* 入力欄・セレクト */
 .JaccsInput input,
+.JaccsInput select,
 .result input {
-    flex: 2;
     background-color: #5f5f5f;
     color: #ffffff;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
+    width: calc(80% - 130px);
     padding: 8px;
     text-align: right;
-    height: 40px;
+    font-weight: 400;
+    height: 38px;
 }
 
-/* select 調整：右寄せ */
-.JaccsInput select {
-    flex: 2;
-    background-color: #5f5f5f;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    padding: 8px;
-    text-align-last: right; /* 選択文字を右寄せ */
-    -moz-text-align-last: right; /* Firefox用 */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    height: 40px;
+select {
+    font-weight: 500;
+    text-align-last: right;       /* select右寄せ */
+    -moz-text-align-last: right;  /* Firefox対応 */
 }
 
 /* number input のスピンボタン非表示 */
@@ -86,6 +101,7 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 input[type=number] {
     -moz-appearance: textfield;
 }
@@ -94,26 +110,7 @@ input[type=number] {
 .result-highlight {
     background-color: #fff !important;
     color: #4a4e52 !important;
-}
-
-/* ボタン */
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.button-container button {
-    width: 85px;
-    height: 36px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: inset 2px 2px 6px #bcbcbc,
-                inset -2px -2px 6px #ffffff;
-    transition: none; /* ホバーなし */
+    transition: background-color 0.3s ease-in-out;
 }
 
 /* 上段・下段の行間統一 */
@@ -122,49 +119,50 @@ input[type=number] {
     min-height: 50px;
 }
 
-/* スマホ対応 */
+/* スマホ(レスポンシブ対応) */
 @media (max-width: 600px) {
     .calculator, .result {
         width: 95%;
         padding: 20px;
     }
 
+    .form-row {
+        flex-direction: row; /* 横並び維持 */
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .form-row label {
         width: 40%;
         font-size: 0.95rem;
+        text-align: left;
+        margin: 0;
     }
 
     .JaccsInput input,
+    .JaccsInput select,
     .result input {
         width: 55%;
         font-size: 0.95rem;
+        text-align: right;
         height: 36px;
         padding: 6px;
-    }
-
-    .JaccsInput select {
-        width: 55%;
-        font-size: 0.95rem;
-        text-align-last: right;
-        -moz-text-align-last: right;
-        height: 36px;
-        padding: 6px;
+        margin: 0;
     }
 
     .button-container {
-        gap: 8px;
+        gap: 10px;
     }
 
     .button-container button {
-        width: 80px;
+        width: 70px;
         height: 34px;
         font-size: 0.9rem;
-        box-shadow: inset 1px 1px 4px #bcbcbc,
-                    inset -1px -1px 4px #ffffff;
     }
 
     h1 {
         font-size: 1.4rem;
         margin-bottom: 12px;
+        text-align: center;
     }
 }
