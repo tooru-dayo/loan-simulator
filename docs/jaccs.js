@@ -1,3 +1,4 @@
+// --- DOM取得 ---
 const priceInput = document.getElementById('price');
 const depositInput = document.getElementById('deposit');
 const installmentSelect = document.getElementById('installment');
@@ -12,30 +13,35 @@ const calculateButton = document.getElementById('calculate');
 const clearButton = document.getElementById('clear');
 const taxOperationSelect = document.getElementById('taxOperation');
 
-// ボーナス回数マッピング
+// --- ボーナス回数マッピング ---
 const bonusTimesMap = {24:4, 36:6, 48:8, 60:10};
 
-// 数字をカンマ区切り
+// --- 数字をカンマ区切りにする関数 ---
 function formatNumber(num){
     return num.toLocaleString();
 }
 
-// 入力値を数値に変換（カンマ除去）
+// --- カンマを除去して数値に変換 ---
 function parseNumber(str) {
     return Number(str.replace(/,/g, '')) || 0;
 }
 
-// 入力時にカンマ表示（focus/blurで制御）
-[priceInput, depositInput, bonusAmountInput].forEach(input => {
-    input.addEventListener('focus', () => {
-        input.value = input.value.replace(/,/g, '');
+// --- 入力時に自動カンマ ---
+function addCommaInput(inputElement) {
+    inputElement.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/,/g, '');
+        if (!isNaN(value) && value !== "") {
+            e.target.value = Number(value).toLocaleString();
+        }
     });
-    input.addEventListener('blur', () => {
-        if(input.value) input.value = Number(input.value).toLocaleString();
-    });
-});
+}
 
-// 分割対象金額更新
+// 適用
+addCommaInput(priceInput);
+addCommaInput(depositInput);
+addCommaInput(bonusAmountInput);
+
+// --- 分割対象金額更新（警告は計算ボタンまで表示しない） ---
 function updateSplitAmount() {
     const price = parseNumber(priceInput.value);
     const deposit = parseNumber(depositInput.value);
@@ -80,7 +86,7 @@ function updateSplitAmount() {
     return { calcSplitAmount, baseSplitAmount, totalBonus };
 }
 
-// 計算ボタン
+// --- 計算ボタン ---
 calculateButton.addEventListener('click', () => {
     const price = parseNumber(priceInput.value);
     const deposit = parseNumber(depositInput.value);
@@ -96,6 +102,7 @@ calculateButton.addEventListener('click', () => {
 
     const { calcSplitAmount, baseSplitAmount, totalBonus } = updateSplitAmount();
 
+    // 警告判定
     if (calcSplitAmount < 300000) {
         bonusWarning.textContent = '分割対象金額が30万円未満です。分割回数は24回のみ可能です。';
         firstPaymentInput.value = '';
@@ -108,6 +115,7 @@ calculateButton.addEventListener('click', () => {
         bonusWarning.textContent = '';
     }
 
+    // 金利計算
     const totalPaymentCalc = calcSplitAmount * (1 + interestRate * installmentCount / 100);
     const otherPayment = Math.floor(totalPaymentCalc / installmentCount / 100) * 100;
     const firstPayment = totalPaymentCalc - otherPayment * (installmentCount - 1);
@@ -127,7 +135,7 @@ calculateButton.addEventListener('click', () => {
     otherPaymentInput.classList.add('result-highlight');
 });
 
-// クリアボタン
+// --- クリア ---
 clearButton.addEventListener('click', () => {
     priceInput.value = '';
     depositInput.value = '';
@@ -136,11 +144,11 @@ clearButton.addEventListener('click', () => {
     firstPaymentInput.value = '';
     otherPaymentInput.value = '';
     bonusPaymentInput.value = '';
-
+    
     taxOperationSelect.value = '0';
     installmentSelect.innerHTML = '<option value="24">24回</option>';
     installmentSelect.value = '24';
-
+    
     bonusWarning.textContent = '';
 
     firstPaymentInput.classList.remove('result-highlight');
@@ -148,12 +156,12 @@ clearButton.addEventListener('click', () => {
     bonusPaymentInput.classList.remove('result-highlight');
 });
 
-// 入力イベント
+// --- 入力欄イベント ---
 priceInput.addEventListener('input', updateSplitAmount);
 depositInput.addEventListener('input', updateSplitAmount);
 bonusAmountInput.addEventListener('input', updateSplitAmount);
 installmentSelect.addEventListener('change', updateSplitAmount);
 taxOperationSelect.addEventListener('change', updateSplitAmount);
 
-// 初期表示
+// 初期表示では何も表示しない
 updateSplitAmount();
