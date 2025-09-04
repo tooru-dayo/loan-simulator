@@ -14,12 +14,12 @@
         <div class="calculator">
             <div class="form-row">
                 <label for="price">本体価格</label>
-                <input type="text" id="price" class="pricedisplay">
+                <input type="text" id="price" class="pricedisplay" inputmode="numeric" pattern="[0-9]*">
             </div>
 
             <div class="form-row">
                 <label for="deposit">頭金</label>
-                <input type="text" id="deposit" class="deposit">
+                <input type="text" id="deposit" class="deposit" inputmode="numeric" pattern="[0-9]*">
             </div>
 
             <div class="form-row">
@@ -29,7 +29,7 @@
 
             <div class="form-row">
                 <label for="bonusAmount">ボーナス金額</label>
-                <input type="text" id="bonusAmount" class="bonusAmount">
+                <input type="text" id="bonusAmount" class="bonusAmount" inputmode="numeric" pattern="[0-9]*">
             </div>
 
             <div class="form-row">
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-row">
-                <label for="tax">金利</label>
+                <label for="taxOperation">金利</label>
                 <select id="taxOperation" class="installmentPayment">
                     <option value="0">無金利</option>
                     <option value="0.14">PP特別金利</option>
