@@ -98,17 +98,6 @@ select {
     font-weight: 500;
 }
 
-/* number input のスピンボタン非表示 */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
 /* 計算結果ハイライト */
 .result-highlight {
     background-color: #fff !important;
@@ -129,41 +118,30 @@ input[type=number] {
         padding: 20px;
     }
 
-    /* 各行を横並びにして右寄せ、折り返し可能に */
     .form-row {
-        display: flex;
-        justify-content: flex-end;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        margin-bottom: 10px;
     }
 
-    /* ラベルは右側に */
     .form-row label {
-        order: 2;                  /* ラベルを右側に */
-        width: auto;
-        margin-left: 10px;
-        text-align: right;
+        width: 40%;
+        margin-bottom: 0;
         font-size: 0.95rem;
-        flex-shrink: 0;
+        text-align: left;
     }
 
-    /* 入力欄は左側、幅50% */
     .JaccsInput input,
     .JaccsInput select,
     .result input {
-        order: 1;                  /* 入力欄を左側に */
-        width: 50%;
-        min-width: 100px;
-        font-size: 1rem;
+        width: 55%;
         margin-left: 0;
+        font-size: 1rem;
     }
 
-    /* ボタンは縦並びで幅いっぱい */
     .button-container {
         flex-direction: column;
         gap: 10px;
-        width: 100%;
     }
 
     .button-container button {
